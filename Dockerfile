@@ -1,7 +1,13 @@
-FROM python3.8
+FROM python:3.8
 
-ADD streamlit_app .
+ADD streamlit_app.py .
+
+COPY requirements.txt .
 
 RUN pip install -r requirements.txt
 
-CMD ["python", "./streamlit_app.py"]
+EXPOSE 8501
+
+ENTRYPOINT ["streamlit", "run"]
+
+CMD ["streamlit_app.py"]
